@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mental Rotation Experiment</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section id="welcome" class="card screen active">
+      <span class="eyebrow">PSYC2240 · Mental Rotation</span>
+      <h1>Letter Rotation Experiment</h1>
+      <p class="lead">Judge whether a rotated letter <strong>R</strong> is normal or mirror-reversed. The study records response time and accuracy across four angular disparities.</p>
+      <div class="callout"><strong>Before you begin:</strong> use a laptop or desktop if possible, close distractions, and keep the browser window visible throughout the task.</div>
+      <label class="check"><input id="ageConsent" type="checkbox"> I am aged 18 or above and consent to take part anonymously.</label>
+      <label>Anonymous participant ID <input id="pid" maxlength="12" placeholder="e.g., P01" autocomplete="off"></label>
+      <button id="startBtn" class="primary">Continue</button>
+      <p id="welcomeError" class="error" aria-live="polite"></p>
+    </section>
+
+    <section id="instructions" class="card screen">
+      <span class="eyebrow">Instructions</span>
+      <h2>Respond quickly and accurately</h2>
+      <div class="instruction-grid">
+        <div><div class="demo normal">R</div><h3>Normal</h3><p>Press <kbd id="normalKeyLabel">F</kbd> or tap <strong>Normal</strong>.</p></div>
+        <div><div class="demo mirrored">R</div><h3>Mirrored</h3><p>Press <kbd id="mirrorKeyLabel">J</kbd> or tap <strong>Mirrored</strong>.</p></div>
+      </div>
+      <p>Each trial begins with a fixation cross. The letter may appear at 0°, 60°, 120°, or 180°. The key mapping stays visible during the task.</p>
+      <button id="practiceBtn" class="primary">Start 4 practice trials</button>
+    </section>
+
+    <section id="experiment" class="card screen experiment-card" aria-live="polite">
+      <div class="topbar"><span id="phaseLabel">Practice</span><span id="progressLabel">1 / 4</span></div>
+      <div id="stage" class="stage"><div id="fixation" class="fixation">+</div><div id="stimulus" class="stimulus" hidden>R</div></div>
+      <div id="feedback" class="feedback"></div>
+      <div class="response-row">
+        <button id="normalBtn" class="response"><span id="normalKeyButton">F</span> Normal</button>
+        <button id="mirrorBtn" class="response"><span id="mirrorKeyButton">J</span> Mirrored</button>
+      </div>
+      <p class="hint">Keyboard or buttons both work. Respond once the letter appears.</p>
+    </section>
+
+    <section id="practiceDone" class="card screen">
+      <span class="eyebrow">Practice complete</span><h2>Ready for the main experiment?</h2>
+      <p>You will complete 40 trials. Incorrect trials are retained for accuracy but excluded from mean reaction-time calculations.</p>
+      <button id="mainBtn" class="primary">Begin experiment</button>
+    </section>
+
+    <section id="results" class="card screen">
+      <span class="eyebrow">Experiment complete</span><h2>Thank you</h2>
+      <p>Your data remain in this browser until you download them. No data are sent to a server.</p>
+      <div id="summaryCards" class="summary-cards"></div>
+      <div class="chart-wrap"><canvas id="chart" width="760" height="340" aria-label="Mean response time by rotation angle"></canvas></div>
+      <div class="actions"><button id="downloadBtn" class="primary">Download CSV</button><button id="restartBtn" class="secondary">Restart</button></div>
+      <details><summary>Data-cleaning note</summary><p>The on-screen summary uses correct main-task trials with RT from 200 to 10,000 ms. The CSV includes every trial, allowing the researcher to verify and report exclusions.</p></details>
+    </section>
+  </main>
+  <footer>Designed for anonymous undergraduate research. Obtain course approval and follow your institution's ethics requirements before collecting data.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
